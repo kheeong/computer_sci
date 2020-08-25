@@ -1,4 +1,3 @@
-#For task 1 and 2
 count = 0
 type_of_bread_total = []
 filling_total = []
@@ -84,3 +83,18 @@ while(True):
     else:
         break
 number_of_baguettes_sold = count
+Filling_list = ["Beef","Chicken","Cheese","Egg","Tuna","Turkey"]
+number_of_filling = [0,0,0,0,0,0]
+for item in filling_total:
+    index = Filling_list.index(item)
+    number_of_filling[index] = number_of_filling[index] + 1
+index_of_filling_max = number_of_filling.index(max(number_of_filling))
+index_of_filling_min = number_of_filling.index(min(number_of_filling))
+print("Most popular Filling:")
+print(Filling_list[index_of_filling_max])
+print("Percentage:")
+print(max(number_of_filling)/number_of_baguettes_sold)
+print("Least popular Filling:")
+print(Filling_list[index_of_filling_min])
+print("Percentage:")
+print(min(number_of_filling)/number_of_baguettes_sold)
