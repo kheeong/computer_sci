@@ -1,0 +1,41 @@
+COUNT <-- 0
+TYPR_OF_BREAD_TOTAL <-- []
+FILLING_TOTAL <-- []
+SIZE_TOTAL <-- []
+NUMBER_OF_BAGUETTES_SOLD <-- 0
+
+WHILE TRUE DO
+    PRINT "Enter O to order or enter E to end the day"
+    INPUT END_DAY
+    IF END_DAY == "O"
+        PRINT "Baguettes size available:15 or 30"
+        PRINT "Input your Baguettes Size by typing 15 or 30"
+        INPUT BAGUETTES_SIZE 
+        WHILE BAGUETTES_SIZE != 15 AND BAGUETTES_SIZE != 30 DO
+            PRINT "Baguettes Size not valid, please input again"
+            INPUT BAGUETTES_SIZE 
+        ENDWHILE
+        PRINT "Baguettes bread available in white,brown or seeded"
+        PRINT "Input your Baguettes bread by typing white,brown or seeded"
+        INPUT BAGUETTES_BREAD
+        WHILE BAGUETTES_BREAD != "white" AND BAGUETTES_BREAD != "brown" AND BAGUETTES_BREAD != "seeded DO
+            PRINT "Baguettes bread not valid, please input again"
+            INPUT BAGUETTES_BREAD
+        ENDWHILE
+        PRINT "Filling available:Beef,Chicken,Cheese,Egg,Tuna,Turkey"
+        PRINT "Please enter the filling of your choice"
+        FILLING_LIST <-- ["Beef","Chicken","Cheese","Egg","Tuna","Turkey"]
+        INPUT FILLING
+        FILLING_VALID <-- FALSE
+        WHILE TRUE DO
+            FOR COUNT = 1 TO 6
+                IF FILLING == FILLING_LIST[COUNT]
+                    FILLING_VALID <-- TRUE
+                ENDIF
+            NEXT COUNT
+            IF FILLING_VALID == TRUE
+                BREAK
+            ENDIF
+            PRINT "Filling not valid,please enter again"
+            INPUT FILLING
+        ENDWHILE
