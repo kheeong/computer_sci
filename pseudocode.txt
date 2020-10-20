@@ -1,4 +1,4 @@
-COUNT <-- 0
+ORDER_NUMBER <-- 0
 TYPR_OF_BREAD_TOTAL <-- []
 FILLING_TOTAL <-- []
 SIZE_TOTAL <-- []
@@ -8,34 +8,227 @@ WHILE TRUE DO
     PRINT "Enter O to order or enter E to end the day"
     INPUT END_DAY
     IF END_DAY == "O"
-        PRINT "Baguettes size available:15 or 30"
-        PRINT "Input your Baguettes Size by typing 15 or 30"
-        INPUT BAGUETTES_SIZE 
-        WHILE BAGUETTES_SIZE != 15 AND BAGUETTES_SIZE != 30 DO
-            PRINT "Baguettes Size not valid, please input again"
+        THEN
+            PRINT "Baguettes size available:15 or 30"
+            PRINT "Input your Baguettes Size by typing 15 or 30"
             INPUT BAGUETTES_SIZE 
-        ENDWHILE
-        PRINT "Baguettes bread available in white,brown or seeded"
-        PRINT "Input your Baguettes bread by typing white,brown or seeded"
-        INPUT BAGUETTES_BREAD
-        WHILE BAGUETTES_BREAD != "white" AND BAGUETTES_BREAD != "brown" AND BAGUETTES_BREAD != "seeded DO
-            PRINT "Baguettes bread not valid, please input again"
+            WHILE BAGUETTES_SIZE != 15 AND BAGUETTES_SIZE != 30 DO
+                PRINT "Baguettes Size not valid, please input again"
+                INPUT BAGUETTES_SIZE 
+            ENDWHILE
+            PRINT "Baguettes bread available in white,brown or seeded"
+            PRINT "Input your Baguettes bread by typing white,brown or seeded"
             INPUT BAGUETTES_BREAD
-        ENDWHILE
-        PRINT "Filling available:Beef,Chicken,Cheese,Egg,Tuna,Turkey"
-        PRINT "Please enter the filling of your choice"
-        FILLING_LIST <-- ["Beef","Chicken","Cheese","Egg","Tuna","Turkey"]
-        INPUT FILLING
-        FILLING_VALID <-- FALSE
-        WHILE TRUE DO
-            FOR COUNT = 1 TO 6
-                IF FILLING == FILLING_LIST[COUNT]
-                    FILLING_VALID <-- TRUE
-                ENDIF
-            NEXT COUNT
-            IF FILLING_VALID == TRUE
-                BREAK
-            ENDIF
-            PRINT "Filling not valid,please enter again"
+            WHILE BAGUETTES_BREAD != "white" AND BAGUETTES_BREAD != "brown" AND BAGUETTES_BREAD != "seeded DO
+                PRINT "Baguettes bread not valid, please input again"
+                INPUT BAGUETTES_BREAD
+            ENDWHILE
+            PRINT "Filling available:Beef,Chicken,Cheese,Egg,Tuna,Turkey"
+            PRINT "Please enter the filling of your choice"
+            FILLING_LIST <-- ["Beef","Chicken","Cheese","Egg","Tuna","Turkey"]
             INPUT FILLING
-        ENDWHILE
+            FILLING_VALID <-- FALSE
+            WHILE TRUE DO
+                FOR COUNT = 1 TO 6
+                    IF FILLING == FILLING_LIST[COUNT]
+                        THEN
+                            FILLING_VALID <-- TRUE
+                    ENDIF
+                NEXT COUNT
+                IF FILLING_VALID == TRUE
+                    THEN
+                        BREAK
+                ENDIF
+                PRINT "Filling not valid,please enter again"
+                INPUT FILLING
+            ENDWHILE
+            PRINT "Please enter number of Salad you wanted to add"
+            INPUT NUMBER_OF_SALAD
+            WHILE TRUE DO
+                IF NUMBER_OF_SALAD <= 3
+                    THEN
+                        BREAK
+                    ELSE
+                        PRINT "number of salad is more than 3, maxinum of 3 is allow, please enter again"
+                        INPUT NUMBER_OF_SALAD
+                ENDIF
+            ENDWHILE
+            SALAD <-- []
+            SALAD_LIST <-- ["Lettuce","Tomato","Sweetcorn","Cucumber","Peppers"]
+            PRINT "Salad available:Lettuce,Tomato,Sweetcorn,Cucumber,Peppers"
+            FOR COUNT = 1 TO NUMBER_OF_SALAD
+                PRINT "Please enter your salad"
+                INPUT SALAD_INPUT
+                SALAD_VALID <-- FALSE
+                WHILE TRUE DO
+                    FOR INDEX = 1 TO 5
+                        IF SALAD_INPUT == SALAD_LIST[INDEX]
+                            THEN 
+                                SALAD_VALID <-- TRUE
+                        ENDIF
+                    NEXT INDEX
+                    IF SALAD_VALID == TRUE
+                        THEN 
+                            BREAK
+                    ENDIF
+                    PRINT "Salad not valid,please enter again"
+                    INPUT SALAD_INPUT
+                SALAD[COUNT-1] <-- SALAD_INPUT
+            NEXT COUNT
+            PRINT "Enter Y to confirm the order or enter C to alter your order or enter X to discard your order"
+            INPUT CONFIRM_ORDER
+            WHILE TRUE DO
+                IF CONFIRM_ORDER == "C"
+                    THEN 
+                    WHILE TRUE DO
+                        PRINT "Please type which order you wanted to alter"
+                        PRINT "Type Baguettes Size,Baguettes Bread,Filling or Salads"
+                        INPUT ALTER_ORDER
+                        IF ALTER_ORDER == "Baguettes Size"
+                            THEN
+                                PRINT "Baguettes size available:15 or 30"
+                                PRINT "Input your Baguettes Size by typing 15 or 30"
+                                INPUT BAGUETTES_SIZE 
+                                WHILE BAGUETTES_SIZE != 15 AND BAGUETTES_SIZE != 30 DO
+                                    PRINT "Baguettes Size not valid, please input again"
+                                    INPUT BAGUETTES_SIZE 
+                                ENDWHILE
+                                BREAK
+                        ELSEIF ALTER_ORDER == "Baguettes Bread"
+                            THEN 
+                                PRINT "Baguettes bread available in white,brown or seeded"
+                                PRINT "Input your Baguettes bread by typing white,brown or seeded"
+                                INPUT BAGUETTES_BREAD
+                                WHILE BAGUETTES_BREAD != "white" AND BAGUETTES_BREAD != "brown" AND BAGUETTES_BREAD != "seeded DO
+                                    PRINT "Baguettes bread not valid, please input again"
+                                    INPUT BAGUETTES_BREAD
+                                ENDWHILE
+                                BREAK
+                        ELSEIF ALTER_ORDER == "Filling"
+                            THEN
+                                PRINT "Filling available:Beef,Chicken,Cheese,Egg,Tuna,Turkey"
+                                PRINT "Please enter the filling of your choice"
+                                FILLING_LIST <-- ["Beef","Chicken","Cheese","Egg","Tuna","Turkey"]
+                                INPUT FILLING
+                                FILLING_VALID <-- FALSE
+                                WHILE TRUE DO
+                                    FOR COUNT = 1 TO 6
+                                        IF FILLING == FILLING_LIST[COUNT]
+                                            THEN
+                                                FILLING_VALID <-- TRUE
+                                        ENDIF
+                                    NEXT COUNT
+                                    IF FILLING_VALID == TRUE
+                                        THEN
+                                            BREAK
+                                    ENDIF
+                                    PRINT "Filling not valid,please enter again"
+                                    INPUT FILLING
+                                ENDWHILE
+                                BREAK
+                        ELSEIF ALTER_ORDER == "Salads"
+                            THEN
+                                PRINT "Please enter number of Salad you wanted to add"
+                                INPUT NUMBER_OF_SALAD
+                                WHILE TRUE DO
+                                    IF NUMBER_OF_SALAD <= 3
+                                        THEN
+                                            BREAK
+                                        ELSE
+                                            PRINT "number of salad is more than 3, maxinum of 3 is allow, please enter again"
+                                            INPUT NUMBER_OF_SALAD
+                                    ENDIF
+                                ENDWHILE
+                                SALAD <-- []
+                                SALAD_LIST <-- ["Lettuce","Tomato","Sweetcorn","Cucumber","Peppers"]
+                                PRINT "Salad available:Lettuce,Tomato,Sweetcorn,Cucumber,Peppers"
+                                FOR COUNT = 1 TO NUMBER_OF_SALAD
+                                    PRINT "Please enter your salad"
+                                    INPUT SALAD_INPUT
+                                    SALAD_VALID <-- FALSE
+                                    WHILE TRUE DO
+                                        FOR INDEX = 1 TO 5
+                                            IF SALAD_INPUT == SALAD_LIST[INDEX]
+                                                THEN 
+                                                    SALAD_VALID <-- TRUE
+                                            ENDIF
+                                        NEXT INDEX
+                                        IF SALAD_VALID == TRUE
+                                            THEN 
+                                                BREAK
+                                        ENDIF
+                                        PRINT "Salad not valid,please enter again"
+                                        INPUT SALAD_INPUT
+                                    SALAD[COUNT-1] <-- SALAD_INPUT
+                                NEXT COUNT
+                                BREAK
+                        ELSE
+                            PRINT "Please input a valid order to alter"
+                        ENDIF
+                    ENDWHILE
+                ELSEIF CONFIRM_ORDER == "Y"
+                    THEN 
+                        ORDER_NUMBER <-- ORDER_NUMBER + 1
+                        PRINT "Your order number:"
+                        PRINT ORDER_NUMBER
+                        PRINT "Your Baguettes Size"
+                        PRINT BAGUETTES_SIZE
+                        SIZE_TOTAL[ORDER_NUMBER-1] <-- BAGUETTES_SIZE
+                        PRINT "Your Baguettes Bread"
+                        PRINT BAGUETTES_BREAD
+                        TYPR_OF_BREAD_TOTAL[ORDER_NUMBER-1] <-- BAGUETTES_BREAD
+                        PRINT "Your filling"
+                        PRINT FILLING
+                        FILLING_TOTAL[ORDER_NUMBER-1] <-- FILLING
+                        PRINT "Your salads"
+                        PRINT SALAD
+                        BREAK
+                ELSEIF CONFIRM_ORDER == "X:
+                    THEN 
+                        PRINT "order discarded"
+                        BREAK
+                ENDIF
+                PRINT "Enter Y to confirm the order or enter C to alter your order or enter X to discard your order"
+                INPUT CONFIRM_ORDER
+        ELSE
+            BREAK 
+
+NUMBER_OF_FILLING <-- [0,0,0,0,0,0]
+FOR INDEX = 1 TO ORDER_NUMBER
+    CASE OF FILLING_TOTAL[ORDER_NUMBER-1]
+        'Beef':NUMBER_OF_FILLING[0] <-- NUMBER_OF_FILLING[0] + 1
+        'Chicken':NUMBER_OF_FILLING[1] <-- NUMBER_OF_FILLING[1] + 1
+        'Cheese':NUMBER_OF_FILLING[2] <-- NUMBER_OF_FILLING[2] + 1
+        'Egg':NUMBER_OF_FILLING[3] <-- NUMBER_OF_FILLING[3] + 1
+        'Tuna':NUMBER_OF_FILLING[4] <-- NUMBER_OF_FILLING[4] + 1
+        'Turkey':NUMBER_OF_FILLING[5] <-- NUMBER_OF_FILLING[5] + 1
+    OTHERWISE:
+    ENDCASE
+NEXT INDEX
+
+PREVIOUS = 0
+FOR INDEX = 0 TO 6
+    IF NUMBER_OF_FILLING[INDEX] > PREVIOUS 
+        THEN 
+            MAX <-- INDEX
+            PREVIOUS <-- NUMBER_OF_FILLING[INDEX]
+    ENDIF
+NEXT INDEX
+
+PREVIOUS = 0
+FOR INDEX = 0 TO 6
+    IF NUMBER_OF_FILLING[INDEX] < PREVIOUS 
+        THEN 
+            MIN <-- INDEX
+            PREVIOUS <-- NUMBER_OF_FILLING[INDEX]
+    ENDIF
+NEXT INDEX
+
+PRINT "Most popular Filling:"
+PRINT FILLING_LIST[MAX]
+PRINT "Percentage:"
+PRINT NUMBER_OF_FILLING[MAX]/ORDER_NUMBER
+PRINT "Least popular Filling:"
+PRINT FILLING_LIST[MIN]
+PRINT "Percentage:"
+PRINT NUMBER_OF_FILLING[MIN]/ORDER_NUMBER
